@@ -21,16 +21,18 @@ const MovieDetails = () => {
   const { original_title, overview, poster_path } = data.data;
 
   return (
-    <main>
+    <div>
       <div>
         <img src={`${URL_IMAGE}${poster_path}`} alt={original_title} />
         <h2>{original_title}</h2>
         <p>{overview}</p>
       </div>
-      <NavLink to={'cast'}>Cast</NavLink>
-      <NavLink to={'reviews'}>Reviews</NavLink>
-      <Outlet />
-    </main>
+      <div>
+        <NavLink to={'cast'}>Cast</NavLink>
+        <NavLink to={'reviews'}>Reviews</NavLink>
+        <Outlet />
+      </div>
+    </div>
   );
 };
 

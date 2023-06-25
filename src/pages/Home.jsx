@@ -19,15 +19,13 @@ const Home = () => {
 
   const { results: topMovies } = data.data;
   return (
-    <main>
-      <ul>
-        {topMovies?.map(({ id, original_title }) => (
-          <li key={id}>
-            <NavLink to={`/movies/${id}`}>{original_title}</NavLink>
-          </li>
-        ))}
-      </ul>
-    </main>
+    <ul>
+      {topMovies?.map(({ id, original_title }) => (
+        <li key={id}>
+          <NavLink to={`/movies/${id}`}>{original_title}</NavLink>
+        </li>
+      ))}
+    </ul>
   );
 };
 
