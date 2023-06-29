@@ -13,22 +13,20 @@ const Reviews = () => {
 
   const movieReviews = data.data.results;
 
-  if (!movieReviews) {
+  if (!movieReviews.length) {
     return <h3>We don't have any reviews for this movie</h3>;
-  }
-
-  return (
-    <div>
+  } else {
+    return (
       <ul>
-        {movieReviews?.map(({ id, content, author }) => (
+        {movieReviews.map(({ id, content, author }) => (
           <li key={id}>
             <h3>Author: {author}</h3>
             <p>{content}</p>
           </li>
         ))}
       </ul>
-    </div>
-  );
+    );
+  }
 };
 
 export default Reviews;

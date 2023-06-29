@@ -34,3 +34,9 @@ export const getReviews = movie_id => {
   const response = axios.get(URL, options);
   return response;
 };
+
+export const getMovies = value => {
+  const URL = `${URL_API}/search/movie?query=${value}&include_adult=true&language=en-US&page=1`;
+  const response = axios.get(URL, options);
+  return response;
+};

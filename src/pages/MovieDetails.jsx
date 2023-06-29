@@ -1,7 +1,8 @@
 import { URL_IMAGE, getMovie } from 'api/moviesAPI';
-import React from 'react';
+import ButtonBack from 'components/ButtonBack/ButtonBack';
+import React, { useRef } from 'react';
 import { useQuery } from 'react-query';
-import { NavLink, Outlet, useParams } from 'react-router-dom';
+import { NavLink, Outlet, useLocation, useParams } from 'react-router-dom';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
@@ -9,6 +10,9 @@ const MovieDetails = () => {
   const { data, isError, isLoading, error } = useQuery('movie', () =>
     getMovie(movieId)
   );
+
+  const { state } = useLocation();
+  const backLink = useRef(state?.from ?? '/movies');
 
   if (isLoading) {
     return <span>Loading...</span>;
@@ -22,8 +26,16 @@ const MovieDetails = () => {
 
   return (
     <div>
+      <ButtonBack linkTo={backLink.current}></ButtonBack>
       <div>
-        <img src={`${URL_IMAGE}${poster_path}`} alt={original_title} />
+        <img
+          src={
+            poster_path
+              ? `${URL_IMAGE}${poster_path}`
+              : 'https://via.placeholder.com/300x450'
+          }
+          alt={original_title}
+        />
         <h2>{original_title}</h2>
         <p>{overview}</p>
       </div>
