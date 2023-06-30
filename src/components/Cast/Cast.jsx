@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 
 const Cast = () => {
   const { movieId } = useParams();
-  const { data, isError, isLoading, error } = useQuery('cast', () =>
+  const { data, isError, isLoading, error } = useQuery(['cast', movieId], () =>
     getCast(movieId)
   );
 

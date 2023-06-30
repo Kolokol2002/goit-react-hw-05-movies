@@ -5,7 +5,9 @@ import { useParams } from 'react-router-dom';
 
 const Reviews = () => {
   const { movieId } = useParams();
-  const { data, isLoading } = useQuery('reviews', () => getReviews(movieId));
+  const { data, isLoading } = useQuery(['reviews', movieId], () =>
+    getReviews(movieId)
+  );
 
   if (isLoading) {
     return <span>Loading...</span>;

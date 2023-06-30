@@ -1,7 +1,7 @@
-import { getTopMovies } from 'api/moviesAPI';
-import React, { useRef } from 'react';
+import { URL_IMAGE, getTopMovies } from 'api/moviesAPI';
 import { useQuery } from 'react-query';
-import { NavLink, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import { Card, CardImage, CardLink, Cards } from './Home.styled';
 
 const Home = () => {
   const { data, isError, isLoading, error } = useQuery(
@@ -9,7 +9,6 @@ const Home = () => {
     getTopMovies
   );
   const location = useLocation();
-  // const backLink = useRef(location.state?.from ?? '/');
 
   if (isLoading) {
     return <span>Loading...</span>;
@@ -20,16 +19,21 @@ const Home = () => {
   }
 
   const { results: topMovies } = data.data;
+  console.log(topMovies);
   return (
-    <ul>
-      {topMovies?.map(({ id, original_title }) => (
-        <li key={id}>
-          <NavLink to={`/movies/${id}`} state={{ from: location }}>
-            {original_title}
-          </NavLink>
-        </li>
+    <Cards>
+      {topMovies?.map(({ id, original_title, poster_path }) => (
+        <Card key={id}>
+          <CardLink to={`/movies/${id}`} state={{ from: location }}>
+            <CardImage
+              src={`${URL_IMAGE}${poster_path}`}
+              alt={original_title}
+            />
+            <span>{original_title}</span>
+          </CardLink>
+        </Card>
       ))}
-    </ul>
+    </Cards>
   );
 };
 

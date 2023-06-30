@@ -18,7 +18,7 @@ export const getTopMovies = () => {
 };
 
 export const getMovie = movie_id => {
-  const URL = `${URL_API}/movie/${movie_id}?language=en-US`;
+  const URL = `${URL_API}/movie/${movie_id}?language=en-US&external_source=imdb_id`;
   const response = axios.get(URL, options);
   return response;
 };
