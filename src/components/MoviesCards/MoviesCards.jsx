@@ -12,7 +12,7 @@ const MoviesCards = ({ results, location }) => {
     <Cards>
       {results.map(({ title, poster_path, id }) => (
         <Card key={id}>
-          <CardLink to={`${id}`} state={{ from: location }}>
+          <CardLink to={`/movies/${id}`} state={{ from: location }}>
             <div>
               <CardImage
                 src={
