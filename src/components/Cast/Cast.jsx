@@ -2,6 +2,7 @@ import { URL_IMAGE, getCast } from 'api/moviesAPI';
 import React from 'react';
 import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
+import { CardCast, CardImageCast, CardsCast } from './Cast.styled';
 
 const Cast = () => {
   const { movieId } = useParams();
@@ -19,24 +20,24 @@ const Cast = () => {
   const movieCasts = data.data.cast;
 
   return (
-    <div>
-      <ul>
-        {movieCasts?.map(({ id, character, name, profile_path }) => (
-          <li key={id}>
-            <img
-              src={
-                profile_path
-                  ? `${URL_IMAGE}${profile_path}`
-                  : 'https://via.placeholder.com/300x450'
-              }
-              alt=""
-            />
+    <CardsCast>
+      {movieCasts?.map(({ id, character, name, profile_path }) => (
+        <CardCast key={id}>
+          <CardImageCast
+            src={
+              profile_path
+                ? `${URL_IMAGE}${profile_path}`
+                : 'https://via.placeholder.com/300x450'
+            }
+            alt=""
+          />
+          <div>
             <h3>Name: {name}</h3>
             <span>Character: {character}</span>
-          </li>
-        ))}
-      </ul>
-    </div>
+          </div>
+        </CardCast>
+      ))}
+    </CardsCast>
   );
 };
 

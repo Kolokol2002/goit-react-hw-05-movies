@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export const Cards = styled.ul`
   display: flex;
   margin: 0;
-  padding: 0 50px;
+  padding: 20px 50px;
   flex-wrap: wrap;
   gap: 40px;
   justify-content: space-between;
@@ -13,7 +13,7 @@ export const Cards = styled.ul`
 export const Card = styled.li`
   display: flex;
   flex-direction: column;
-  width: 300px;
+  width: 200px;
   border: solid 2px black;
   border-radius: 10px;
   overflow: hidden;
@@ -21,9 +21,7 @@ export const Card = styled.li`
 
 export const CardImage = styled.img`
   width: 100%;
-  height: 450px;
   object-fit: cover;
-  overflow: hidden;
 
   transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
   &:hover {
@@ -34,8 +32,16 @@ export const CardImage = styled.img`
 export const CardLink = styled(Link)`
   text-decoration: none;
   color: black;
+  height: 100%;
 
-  & span {
-    padding: 10px;
+  & h2 {
+    display: block;
+    padding: 10px 5px;
+    font-size: 15px;
+  }
+
+  & div {
+    height: 300px;
+    overflow: hidden;
   }
 `;

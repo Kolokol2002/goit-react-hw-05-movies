@@ -1,6 +1,9 @@
-import { URL_IMAGE, getMovies } from 'api/moviesAPI';
+import { getMovies } from 'api/moviesAPI';
+import ButtonBack from 'components/ButtonBack/ButtonBack';
 import { useQuery } from 'react-query';
-import { Link, useLocation, useSearchParams } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
+
+import MoviesCards from 'components/MoviesCards/MoviesCards';
 
 const Movies = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -26,39 +29,19 @@ const Movies = () => {
     setSearchParams({ search: e.target.children.search.value });
   };
 
-  const { results, page, total_pages, total_results } = data.data;
+  // const { results, page, total_pages, total_results } = data.data;
+  const { results } = data.data;
 
   return (
     <>
-      <div>
-        <form onSubmit={onSubmit}>
-          <input defaultValue={valueInput} name="search" type="text"></input>
-          <button type="submit">Search</button>
-        </form>
-      </div>
+      <ButtonBack linkTo={'/'} />
 
-      {valueInput && (
-        <div>
-          <ul>
-            {results?.map(({ title, overview, poster_path, id }) => (
-              <li key={id}>
-                <img
-                  src={
-                    poster_path
-                      ? `${URL_IMAGE}${poster_path}`
-                      : 'https://via.placeholder.com/300x450'
-                  }
-                  alt={title}
-                />
-                <Link to={`${id}`} state={{ from: location }}>
-                  <h2>{title}</h2>
-                </Link>
-                <p>{overview}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+      <form onSubmit={onSubmit}>
+        <input defaultValue={valueInput} name="search" type="text"></input>
+        <button type="submit">Search</button>
+      </form>
+
+      {valueInput && <MoviesCards results={results} location={location} />}
     </>
   );
 };

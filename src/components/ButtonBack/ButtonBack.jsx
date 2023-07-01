@@ -1,11 +1,12 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import { BsArrowLeft } from 'react-icons/bs';
+import { ButtonBackLink } from './ButtonBack.styled';
 
 const ButtonBack = ({ linkTo }) => {
   return (
-    <div>
-      <Link to={linkTo}>Go Back</Link>
-    </div>
+    <ButtonBackLink to={linkTo}>
+      <BsArrowLeft />
+      <span>Back</span>
+    </ButtonBackLink>
   );
 };
 

@@ -2,7 +2,7 @@ import { URL_IMAGE, getMovie } from 'api/moviesAPI';
 import ButtonBack from 'components/ButtonBack/ButtonBack';
 import React, { useRef } from 'react';
 import { useQuery } from 'react-query';
-import { NavLink, Outlet, useLocation, useParams } from 'react-router-dom';
+import { Outlet, useLocation, useParams } from 'react-router-dom';
 import {
   ContainerInfo,
   ContainerInfoMovie,
@@ -17,9 +17,8 @@ import {
 const MovieDetails = () => {
   const { movieId } = useParams();
 
-  const { data, isError, isLoading, error, status } = useQuery(
-    ['movie', movieId],
-    () => getMovie(movieId)
+  const { data, isError, isLoading, error } = useQuery(['movie', movieId], () =>
+    getMovie(movieId)
   );
 
   const { state } = useLocation();
