@@ -6,7 +6,6 @@ export const Container = styled.div`
 `;
 
 export const Header = styled.header`
-  /* background-color: gray; */
 `;
 
 export const Nav = styled.nav`

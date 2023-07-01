@@ -13,7 +13,6 @@ export const ButtonBackLink = styled(Link)`
   transition: all 0.2s linear;
   cursor: pointer;
   border: none;
-  /* background: #fff; */
   margin-bottom: 33px;
   color: #ffffff;
   text-decoration: none;
